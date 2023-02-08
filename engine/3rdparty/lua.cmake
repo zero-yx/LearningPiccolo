@@ -1,5 +1,6 @@
-set(lua_SOURCE_DIR_ ${CMAKE_CURRENT_SOURCE_DIR}/lua-5.4.4)
+set(lua_SOURCE_DIR_ ${CMAKE_CURRENT_SOURCE_DIR}/lua-5.4.4) #设置变量lua_SOURCE_DIR_
 
+#生成一个名为 lua_static的静态库给项目使用。库中文件内容如下
 add_library(lua_static STATIC 
 ${lua_SOURCE_DIR_}/lapi.c
 ${lua_SOURCE_DIR_}/lauxlib.c
@@ -38,4 +39,5 @@ ${lua_SOURCE_DIR_}/lzio.c
 #${lua_SOURCE_DIR_}/onelua.c
 )
 
+#在编译lua_static时  指定头文件
 target_include_directories(lua_static PUBLIC ${lua_SOURCE_DIR_})

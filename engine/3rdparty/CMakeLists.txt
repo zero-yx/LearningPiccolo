@@ -69,5 +69,5 @@ if(NOT TARGET sol2)
 endif()
 
 if(NOT TARGET lua)
-    include(lua.cmake)
+    include(lua.cmake)  #直接使用lua.cmake文件的cmake代码
 endif()
