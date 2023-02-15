@@ -26,20 +26,30 @@ Class::Class(const Cursor& cursor, const Namespace& current_namespace) :
             case CXCursor_FieldDecl:
                 m_fields.emplace_back(new Field(child, current_namespace, this));
                 break;
+            // method
+            // 通过c-lang工具在抽象语法树AST中找到对应method的标记将信息收集 可以使用纯中文注释 但不能使用全角符
+            case CXCursor_CXXMethod:
+                m_methods.emplace_back(new Method(child, current_namespace, this));
+                break;
             default:
                 break;
         }
     }
 }
 
-bool Class::shouldCompile(void) const { return shouldCompileFilds(); }
+bool Class::shouldCompile(void) const { return shouldCompileFields() || shouldCompileMethods(); }
 
-bool Class::shouldCompileFilds(void) const
+bool Class::shouldCompileFields(void) const
 {
     return m_meta_data.getFlag(NativeProperty::All) || m_meta_data.getFlag(NativeProperty::Fields) ||
            m_meta_data.getFlag(NativeProperty::WhiteListFields);
 }
 
+bool Class::shouldCompileMethods(void) const
+{
+    return m_meta_data.getFlag(NativeProperty::All) || m_meta_data.getFlag(NativeProperty::Methods) ||
+           m_meta_data.getFlag(NativeProperty::WhiteListMethods);
+}
 std::string Class::getClassName(void) { return m_name; }
 
 bool Class::isAccessible(void) const { return m_enabled; }

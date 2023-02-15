@@ -125,9 +125,9 @@
         {
             "$context": {
                 "metadata":{
-                    "comments_lua_script":"利用lua脚本对不同状态下的player进行跳跃高度设定（此meta数据为注释作用）"
+                    "comments_lua_script":"利用lua脚本对不同状态下的player进行跳跃高度设定,并附带脱离卡死函数（此meta数据为注释作用）"
                 },
-                "lua_script":"if(get_bool(GameObject, \"MotorComponent.m_is_moving\")) then set_float(GameObject,\"MotorComponent.m_motor_res.m_jump_height\",10) else set_float(GameObject,\"MotorComponent.m_motor_res.m_jump_height\",5) end"
+                "lua_script":"if (get_bool(GameObject,\"MotorComponent.m_is_moving\")) then set_float(GameObject,\"MotorComponent.m_motor_res.m_jump_height\",10) else set_float(GameObject,\"MotorComponent.m_motor_res.m_jump_height\",5) end invoke(GameObject,\"MotorComponent.getOffStuckDead\")"
             },
             "$typeName": "LuaComponent"
         }
