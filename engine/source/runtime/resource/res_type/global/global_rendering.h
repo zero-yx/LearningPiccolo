@@ -57,6 +57,7 @@ namespace Piccolo
         SkyBoxSpecularMap   m_skybox_specular_map;
         std::string         m_brdf_map;
         std::string         m_color_grading_map;
+        std::string         m_vignette_map;
 
         Color            m_sky_color;
         Color            m_ambient_light;

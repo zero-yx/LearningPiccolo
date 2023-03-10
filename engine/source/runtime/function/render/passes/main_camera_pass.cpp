@@ -69,7 +69,7 @@ namespace Piccolo
                                    m_framebuffer.attachments[_main_camera_pass_gbuffer_a].format,
                                    RHI_IMAGE_TILING_OPTIMAL,
                                    RHI_IMAGE_USAGE_INPUT_ATTACHMENT_BIT | RHI_IMAGE_USAGE_COLOR_ATTACHMENT_BIT |
-                                   RHI_IMAGE_USAGE_TRANSFER_SRC_BIT,
+                                       RHI_IMAGE_USAGE_TRANSFER_SRC_BIT,
                                    RHI_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
                                    m_framebuffer.attachments[_main_camera_pass_gbuffer_a].image,
                                    m_framebuffer.attachments[_main_camera_pass_gbuffer_a].mem,
@@ -84,7 +84,7 @@ namespace Piccolo
                                    m_framebuffer.attachments[buffer_index].format,
                                    RHI_IMAGE_TILING_OPTIMAL,
                                    RHI_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | RHI_IMAGE_USAGE_INPUT_ATTACHMENT_BIT |
-                                   RHI_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT,
+                                       RHI_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT,
                                    RHI_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
                                    m_framebuffer.attachments[buffer_index].image,
                                    m_framebuffer.attachments[buffer_index].mem,
@@ -114,7 +114,7 @@ namespace Piccolo
                                m_framebuffer.attachments[attachment_index].format,
                                RHI_IMAGE_TILING_OPTIMAL,
                                RHI_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | RHI_IMAGE_USAGE_INPUT_ATTACHMENT_BIT |
-                               RHI_IMAGE_USAGE_SAMPLED_BIT,
+                                   RHI_IMAGE_USAGE_SAMPLED_BIT,
                                RHI_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
                                m_framebuffer.attachments[attachment_index].image,
                                m_framebuffer.attachments[attachment_index].mem,
@@ -153,7 +153,8 @@ namespace Piccolo
         gbuffer_metallic_roughness_shadingmodeid_attachment_description.samples = RHI_SAMPLE_COUNT_1_BIT;
         gbuffer_metallic_roughness_shadingmodeid_attachment_description.loadOp  = RHI_ATTACHMENT_LOAD_OP_CLEAR;
         gbuffer_metallic_roughness_shadingmodeid_attachment_description.storeOp = RHI_ATTACHMENT_STORE_OP_DONT_CARE;
-        gbuffer_metallic_roughness_shadingmodeid_attachment_description.stencilLoadOp = RHI_ATTACHMENT_LOAD_OP_DONT_CARE;
+        gbuffer_metallic_roughness_shadingmodeid_attachment_description.stencilLoadOp =
+            RHI_ATTACHMENT_LOAD_OP_DONT_CARE;
         gbuffer_metallic_roughness_shadingmodeid_attachment_description.stencilStoreOp =
             RHI_ATTACHMENT_STORE_OP_DONT_CARE;
         gbuffer_metallic_roughness_shadingmodeid_attachment_description.initialLayout = RHI_IMAGE_LAYOUT_UNDEFINED;
@@ -219,14 +220,14 @@ namespace Piccolo
         post_process_even_color_attachment_description.finalLayout    = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIAttachmentDescription& depth_attachment_description = attachments[_main_camera_pass_depth];
-        depth_attachment_description.format                   = m_rhi->getDepthImageInfo().depth_image_format;
-        depth_attachment_description.samples                  = RHI_SAMPLE_COUNT_1_BIT;
-        depth_attachment_description.loadOp                   = RHI_ATTACHMENT_LOAD_OP_CLEAR;
-        depth_attachment_description.storeOp                  = RHI_ATTACHMENT_STORE_OP_STORE;
-        depth_attachment_description.stencilLoadOp            = RHI_ATTACHMENT_LOAD_OP_DONT_CARE;
-        depth_attachment_description.stencilStoreOp           = RHI_ATTACHMENT_STORE_OP_DONT_CARE;
-        depth_attachment_description.initialLayout            = RHI_IMAGE_LAYOUT_UNDEFINED;
-        depth_attachment_description.finalLayout              = RHI_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
+        depth_attachment_description.format                    = m_rhi->getDepthImageInfo().depth_image_format;
+        depth_attachment_description.samples                   = RHI_SAMPLE_COUNT_1_BIT;
+        depth_attachment_description.loadOp                    = RHI_ATTACHMENT_LOAD_OP_CLEAR;
+        depth_attachment_description.storeOp                   = RHI_ATTACHMENT_STORE_OP_STORE;
+        depth_attachment_description.stencilLoadOp             = RHI_ATTACHMENT_LOAD_OP_DONT_CARE;
+        depth_attachment_description.stencilStoreOp            = RHI_ATTACHMENT_STORE_OP_DONT_CARE;
+        depth_attachment_description.initialLayout             = RHI_IMAGE_LAYOUT_UNDEFINED;
+        depth_attachment_description.finalLayout               = RHI_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
         RHIAttachmentDescription& swapchain_image_attachment_description =
             attachments[_main_camera_pass_swap_chain_image];
@@ -255,7 +256,7 @@ namespace Piccolo
         base_pass_depth_attachment_reference.layout     = RHI_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
         RHISubpassDescription& base_pass = subpasses[_main_camera_subpass_basepass];
-        base_pass.pipelineBindPoint     = RHI_PIPELINE_BIND_POINT_GRAPHICS;
+        base_pass.pipelineBindPoint      = RHI_PIPELINE_BIND_POINT_GRAPHICS;
         base_pass.colorAttachmentCount =
             sizeof(base_pass_color_attachments_reference) / sizeof(base_pass_color_attachments_reference[0]);
         base_pass.pColorAttachments       = &base_pass_color_attachments_reference[0];
@@ -282,8 +283,8 @@ namespace Piccolo
         deferred_lighting_pass_color_attachment_reference[0].layout = RHI_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
         RHISubpassDescription& deferred_lighting_pass = subpasses[_main_camera_subpass_deferred_lighting];
-        deferred_lighting_pass.pipelineBindPoint     = RHI_PIPELINE_BIND_POINT_GRAPHICS;
-        deferred_lighting_pass.inputAttachmentCount  = sizeof(deferred_lighting_pass_input_attachments_reference) /
+        deferred_lighting_pass.pipelineBindPoint      = RHI_PIPELINE_BIND_POINT_GRAPHICS;
+        deferred_lighting_pass.inputAttachmentCount   = sizeof(deferred_lighting_pass_input_attachments_reference) /
                                                       sizeof(deferred_lighting_pass_input_attachments_reference[0]);
         deferred_lighting_pass.pInputAttachments    = &deferred_lighting_pass_input_attachments_reference[0];
         deferred_lighting_pass.colorAttachmentCount = sizeof(deferred_lighting_pass_color_attachment_reference) /
@@ -303,10 +304,10 @@ namespace Piccolo
         forward_lighting_pass_depth_attachment_reference.layout     = RHI_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL;
 
         RHISubpassDescription& forward_lighting_pass = subpasses[_main_camera_subpass_forward_lighting];
-        forward_lighting_pass.pipelineBindPoint     = RHI_PIPELINE_BIND_POINT_GRAPHICS;
-        forward_lighting_pass.inputAttachmentCount  = 0U;
-        forward_lighting_pass.pInputAttachments     = NULL;
-        forward_lighting_pass.colorAttachmentCount  = sizeof(forward_lighting_pass_color_attachments_reference) /
+        forward_lighting_pass.pipelineBindPoint      = RHI_PIPELINE_BIND_POINT_GRAPHICS;
+        forward_lighting_pass.inputAttachmentCount   = 0U;
+        forward_lighting_pass.pInputAttachments      = NULL;
+        forward_lighting_pass.colorAttachmentCount   = sizeof(forward_lighting_pass_color_attachments_reference) /
                                                      sizeof(forward_lighting_pass_color_attachments_reference[0]);
         forward_lighting_pass.pColorAttachments       = &forward_lighting_pass_color_attachments_reference[0];
         forward_lighting_pass.pDepthStencilAttachment = &forward_lighting_pass_depth_attachment_reference;
@@ -323,7 +324,7 @@ namespace Piccolo
             &backup_even_color_attachment_description - attachments;
         tone_mapping_pass_color_attachment_reference.layout = RHI_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
-        RHISubpassDescription& tone_mapping_pass   = subpasses[_main_camera_subpass_tone_mapping];
+        RHISubpassDescription& tone_mapping_pass  = subpasses[_main_camera_subpass_tone_mapping];
         tone_mapping_pass.pipelineBindPoint       = RHI_PIPELINE_BIND_POINT_GRAPHICS;
         tone_mapping_pass.inputAttachmentCount    = 1;
         tone_mapping_pass.pInputAttachments       = &tone_mapping_pass_input_attachment_reference;
@@ -351,7 +352,7 @@ namespace Piccolo
         }
         color_grading_pass_color_attachment_reference.layout = RHI_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
-        RHISubpassDescription& color_grading_pass   = subpasses[_main_camera_subpass_color_grading];
+        RHISubpassDescription& color_grading_pass  = subpasses[_main_camera_subpass_color_grading];
         color_grading_pass.pipelineBindPoint       = RHI_PIPELINE_BIND_POINT_GRAPHICS;
         color_grading_pass.inputAttachmentCount    = 1;
         color_grading_pass.pInputAttachments       = &color_grading_pass_input_attachment_reference;
@@ -360,6 +361,34 @@ namespace Piccolo
         color_grading_pass.pDepthStencilAttachment = NULL;
         color_grading_pass.preserveAttachmentCount = 0;
         color_grading_pass.pPreserveAttachments    = NULL;
+
+        // vignette subpass
+        RHIAttachmentReference vignette_pass_input_attachment_reference {};
+        vignette_pass_input_attachment_reference.attachment = &backup_odd_color_attachment_description - attachments;
+        vignette_pass_input_attachment_reference.layout     = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+
+        RHIAttachmentReference vignette_pass_color_attachment_reference {};
+        if (m_enable_fxaa)
+        {
+            vignette_pass_color_attachment_reference.attachment =
+                &post_process_even_color_attachment_description - attachments;
+        }
+        else
+        {
+            vignette_pass_color_attachment_reference.attachment =
+                &backup_even_color_attachment_description - attachments;
+        }
+        vignette_pass_color_attachment_reference.layout = RHI_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+        RHISubpassDescription& vignette_pass  = subpasses[_main_camera_subpass_vignette];
+        vignette_pass.pipelineBindPoint       = RHI_PIPELINE_BIND_POINT_GRAPHICS;
+        vignette_pass.inputAttachmentCount    = 1;
+        vignette_pass.pInputAttachments       = &vignette_pass_input_attachment_reference;
+        vignette_pass.colorAttachmentCount    = 1;
+        vignette_pass.pColorAttachments       = &vignette_pass_color_attachment_reference;
+        vignette_pass.pDepthStencilAttachment = NULL;
+        vignette_pass.preserveAttachmentCount = 0;
+        vignette_pass.pPreserveAttachments    = NULL;
 
         RHIAttachmentReference fxaa_pass_input_attachment_reference {};
         if (m_enable_fxaa)
@@ -377,7 +406,7 @@ namespace Piccolo
         fxaa_pass_color_attachment_reference.attachment = &backup_odd_color_attachment_description - attachments;
         fxaa_pass_color_attachment_reference.layout     = RHI_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
-        RHISubpassDescription& fxaa_pass   = subpasses[_main_camera_subpass_fxaa];
+        RHISubpassDescription& fxaa_pass  = subpasses[_main_camera_subpass_fxaa];
         fxaa_pass.pipelineBindPoint       = RHI_PIPELINE_BIND_POINT_GRAPHICS;
         fxaa_pass.inputAttachmentCount    = 1;
         fxaa_pass.pInputAttachments       = &fxaa_pass_input_attachment_reference;
@@ -388,10 +417,10 @@ namespace Piccolo
         fxaa_pass.pPreserveAttachments    = NULL;
 
         RHIAttachmentReference ui_pass_color_attachment_reference {};
-        ui_pass_color_attachment_reference.attachment = &backup_even_color_attachment_description - attachments;
+        ui_pass_color_attachment_reference.attachment = &backup_odd_color_attachment_description - attachments;
         ui_pass_color_attachment_reference.layout     = RHI_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
 
-        uint32_t ui_pass_preserve_attachment = &backup_odd_color_attachment_description - attachments;
+        uint32_t ui_pass_preserve_attachment = &backup_even_color_attachment_description - attachments;
 
         RHISubpassDescription& ui_pass  = subpasses[_main_camera_subpass_ui];
         ui_pass.pipelineBindPoint       = RHI_PIPELINE_BIND_POINT_GRAPHICS;
@@ -405,10 +434,10 @@ namespace Piccolo
 
         RHIAttachmentReference combine_ui_pass_input_attachments_reference[2] = {};
         combine_ui_pass_input_attachments_reference[0].attachment =
-            &backup_odd_color_attachment_description - attachments;
+            &backup_even_color_attachment_description - attachments;
         combine_ui_pass_input_attachments_reference[0].layout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
         combine_ui_pass_input_attachments_reference[1].attachment =
-            &backup_even_color_attachment_description - attachments;
+            &backup_odd_color_attachment_description - attachments;
         combine_ui_pass_input_attachments_reference[1].layout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIAttachmentReference combine_ui_pass_color_attachment_reference {};
@@ -418,7 +447,7 @@ namespace Piccolo
         RHISubpassDescription& combine_ui_pass = subpasses[_main_camera_subpass_combine_ui];
         combine_ui_pass.pipelineBindPoint      = RHI_PIPELINE_BIND_POINT_GRAPHICS;
         combine_ui_pass.inputAttachmentCount   = sizeof(combine_ui_pass_input_attachments_reference) /
-                                                 sizeof(combine_ui_pass_input_attachments_reference[0]);
+                                               sizeof(combine_ui_pass_input_attachments_reference[0]);
         combine_ui_pass.pInputAttachments       = combine_ui_pass_input_attachments_reference;
         combine_ui_pass.colorAttachmentCount    = 1;
         combine_ui_pass.pColorAttachments       = &combine_ui_pass_color_attachment_reference;
@@ -426,11 +455,11 @@ namespace Piccolo
         combine_ui_pass.preserveAttachmentCount = 0;
         combine_ui_pass.pPreserveAttachments    = NULL;
 
-        RHISubpassDependency dependencies[8] = {};
+        RHISubpassDependency dependencies[9] = {};
 
         RHISubpassDependency& deferred_lighting_pass_depend_on_shadow_map_pass = dependencies[0];
-        deferred_lighting_pass_depend_on_shadow_map_pass.srcSubpass           = RHI_SUBPASS_EXTERNAL;
-        deferred_lighting_pass_depend_on_shadow_map_pass.dstSubpass           = _main_camera_subpass_deferred_lighting;
+        deferred_lighting_pass_depend_on_shadow_map_pass.srcSubpass            = RHI_SUBPASS_EXTERNAL;
+        deferred_lighting_pass_depend_on_shadow_map_pass.dstSubpass            = _main_camera_subpass_deferred_lighting;
         deferred_lighting_pass_depend_on_shadow_map_pass.srcStageMask  = RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
         deferred_lighting_pass_depend_on_shadow_map_pass.dstStageMask  = RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
         deferred_lighting_pass_depend_on_shadow_map_pass.srcAccessMask = RHI_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
@@ -438,8 +467,8 @@ namespace Piccolo
         deferred_lighting_pass_depend_on_shadow_map_pass.dependencyFlags = 0; // NOT BY REGION
 
         RHISubpassDependency& deferred_lighting_pass_depend_on_base_pass = dependencies[1];
-        deferred_lighting_pass_depend_on_base_pass.srcSubpass           = _main_camera_subpass_basepass;
-        deferred_lighting_pass_depend_on_base_pass.dstSubpass           = _main_camera_subpass_deferred_lighting;
+        deferred_lighting_pass_depend_on_base_pass.srcSubpass            = _main_camera_subpass_basepass;
+        deferred_lighting_pass_depend_on_base_pass.dstSubpass            = _main_camera_subpass_deferred_lighting;
         deferred_lighting_pass_depend_on_base_pass.srcStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
         deferred_lighting_pass_depend_on_base_pass.dstStageMask =
@@ -464,8 +493,8 @@ namespace Piccolo
         forward_lighting_pass_depend_on_deferred_lighting_pass.dependencyFlags = RHI_DEPENDENCY_BY_REGION_BIT;
 
         RHISubpassDependency& tone_mapping_pass_depend_on_lighting_pass = dependencies[3];
-        tone_mapping_pass_depend_on_lighting_pass.srcSubpass           = _main_camera_subpass_forward_lighting;
-        tone_mapping_pass_depend_on_lighting_pass.dstSubpass           = _main_camera_subpass_tone_mapping;
+        tone_mapping_pass_depend_on_lighting_pass.srcSubpass            = _main_camera_subpass_forward_lighting;
+        tone_mapping_pass_depend_on_lighting_pass.dstSubpass            = _main_camera_subpass_tone_mapping;
         tone_mapping_pass_depend_on_lighting_pass.srcStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
         tone_mapping_pass_depend_on_lighting_pass.dstStageMask =
@@ -477,8 +506,8 @@ namespace Piccolo
         tone_mapping_pass_depend_on_lighting_pass.dependencyFlags = RHI_DEPENDENCY_BY_REGION_BIT;
 
         RHISubpassDependency& color_grading_pass_depend_on_tone_mapping_pass = dependencies[4];
-        color_grading_pass_depend_on_tone_mapping_pass.srcSubpass           = _main_camera_subpass_tone_mapping;
-        color_grading_pass_depend_on_tone_mapping_pass.dstSubpass           = _main_camera_subpass_color_grading;
+        color_grading_pass_depend_on_tone_mapping_pass.srcSubpass            = _main_camera_subpass_tone_mapping;
+        color_grading_pass_depend_on_tone_mapping_pass.dstSubpass            = _main_camera_subpass_color_grading;
         color_grading_pass_depend_on_tone_mapping_pass.srcStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
         color_grading_pass_depend_on_tone_mapping_pass.dstStageMask =
@@ -489,32 +518,45 @@ namespace Piccolo
             RHI_ACCESS_SHADER_READ_BIT | RHI_ACCESS_COLOR_ATTACHMENT_READ_BIT;
         color_grading_pass_depend_on_tone_mapping_pass.dependencyFlags = RHI_DEPENDENCY_BY_REGION_BIT;
 
-        RHISubpassDependency& fxaa_pass_depend_on_color_grading_pass = dependencies[5];
-        fxaa_pass_depend_on_color_grading_pass.srcSubpass           = _main_camera_subpass_color_grading;
-        fxaa_pass_depend_on_color_grading_pass.dstSubpass           = _main_camera_subpass_fxaa;
-        fxaa_pass_depend_on_color_grading_pass.srcStageMask =
+        RHISubpassDependency& vignette_pass_depend_on_color_grading_pass = dependencies[5];
+        vignette_pass_depend_on_color_grading_pass.srcSubpass            = _main_camera_subpass_color_grading;
+        vignette_pass_depend_on_color_grading_pass.dstSubpass            = _main_camera_subpass_vignette;
+        vignette_pass_depend_on_color_grading_pass.srcStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-        fxaa_pass_depend_on_color_grading_pass.dstStageMask =
+        vignette_pass_depend_on_color_grading_pass.dstStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-        fxaa_pass_depend_on_color_grading_pass.srcAccessMask =
+        vignette_pass_depend_on_color_grading_pass.srcAccessMask =
             RHI_ACCESS_SHADER_WRITE_BIT | RHI_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
-        fxaa_pass_depend_on_color_grading_pass.dstAccessMask =
+        vignette_pass_depend_on_color_grading_pass.dstAccessMask =
+            RHI_ACCESS_SHADER_READ_BIT | RHI_ACCESS_COLOR_ATTACHMENT_READ_BIT;
+        vignette_pass_depend_on_color_grading_pass.dependencyFlags = RHI_DEPENDENCY_BY_REGION_BIT;
+
+        RHISubpassDependency& fxaa_pass_depend_on_vignette_pass = dependencies[6];
+        fxaa_pass_depend_on_vignette_pass.srcSubpass            = _main_camera_subpass_vignette;
+        fxaa_pass_depend_on_vignette_pass.dstSubpass            = _main_camera_subpass_fxaa;
+        fxaa_pass_depend_on_vignette_pass.srcStageMask =
+            RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+        fxaa_pass_depend_on_vignette_pass.dstStageMask =
+            RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+        fxaa_pass_depend_on_vignette_pass.srcAccessMask =
+            RHI_ACCESS_SHADER_WRITE_BIT | RHI_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+        fxaa_pass_depend_on_vignette_pass.dstAccessMask =
             RHI_ACCESS_SHADER_READ_BIT | RHI_ACCESS_COLOR_ATTACHMENT_READ_BIT;
 
-        RHISubpassDependency& ui_pass_depend_on_fxaa_pass = dependencies[6];
-        ui_pass_depend_on_fxaa_pass.srcSubpass           = _main_camera_subpass_fxaa;
-        ui_pass_depend_on_fxaa_pass.dstSubpass           = _main_camera_subpass_ui;
+        RHISubpassDependency& ui_pass_depend_on_fxaa_pass = dependencies[7];
+        ui_pass_depend_on_fxaa_pass.srcSubpass            = _main_camera_subpass_fxaa;
+        ui_pass_depend_on_fxaa_pass.dstSubpass            = _main_camera_subpass_ui;
         ui_pass_depend_on_fxaa_pass.srcStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
         ui_pass_depend_on_fxaa_pass.dstStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
-        ui_pass_depend_on_fxaa_pass.srcAccessMask   = RHI_ACCESS_SHADER_WRITE_BIT | RHI_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
-        ui_pass_depend_on_fxaa_pass.dstAccessMask   = RHI_ACCESS_SHADER_READ_BIT | RHI_ACCESS_COLOR_ATTACHMENT_READ_BIT;
+        ui_pass_depend_on_fxaa_pass.srcAccessMask = RHI_ACCESS_SHADER_WRITE_BIT | RHI_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+        ui_pass_depend_on_fxaa_pass.dstAccessMask = RHI_ACCESS_SHADER_READ_BIT | RHI_ACCESS_COLOR_ATTACHMENT_READ_BIT;
         ui_pass_depend_on_fxaa_pass.dependencyFlags = RHI_DEPENDENCY_BY_REGION_BIT;
 
-        RHISubpassDependency& combine_ui_pass_depend_on_ui_pass = dependencies[7];
-        combine_ui_pass_depend_on_ui_pass.srcSubpass           = _main_camera_subpass_ui;
-        combine_ui_pass_depend_on_ui_pass.dstSubpass           = _main_camera_subpass_combine_ui;
+        RHISubpassDependency& combine_ui_pass_depend_on_ui_pass = dependencies[8];
+        combine_ui_pass_depend_on_ui_pass.srcSubpass            = _main_camera_subpass_ui;
+        combine_ui_pass_depend_on_ui_pass.dstSubpass            = _main_camera_subpass_combine_ui;
         combine_ui_pass_depend_on_ui_pass.srcStageMask =
             RHI_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | RHI_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
         combine_ui_pass_depend_on_ui_pass.dstStageMask =
@@ -548,18 +590,19 @@ namespace Piccolo
             RHIDescriptorSetLayoutBinding mesh_mesh_layout_bindings[1];
 
             RHIDescriptorSetLayoutBinding& mesh_mesh_layout_uniform_buffer_binding = mesh_mesh_layout_bindings[0];
-            mesh_mesh_layout_uniform_buffer_binding.binding                       = 0;
-            mesh_mesh_layout_uniform_buffer_binding.descriptorType                = RHI_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-            mesh_mesh_layout_uniform_buffer_binding.descriptorCount               = 1;
-            mesh_mesh_layout_uniform_buffer_binding.stageFlags                    = RHI_SHADER_STAGE_VERTEX_BIT;
-            mesh_mesh_layout_uniform_buffer_binding.pImmutableSamplers            = NULL;
+            mesh_mesh_layout_uniform_buffer_binding.binding                        = 0;
+            mesh_mesh_layout_uniform_buffer_binding.descriptorType                 = RHI_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+            mesh_mesh_layout_uniform_buffer_binding.descriptorCount                = 1;
+            mesh_mesh_layout_uniform_buffer_binding.stageFlags                     = RHI_SHADER_STAGE_VERTEX_BIT;
+            mesh_mesh_layout_uniform_buffer_binding.pImmutableSamplers             = NULL;
 
             RHIDescriptorSetLayoutCreateInfo mesh_mesh_layout_create_info {};
             mesh_mesh_layout_create_info.sType        = RHI_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
             mesh_mesh_layout_create_info.bindingCount = 1;
             mesh_mesh_layout_create_info.pBindings    = mesh_mesh_layout_bindings;
 
-            if (m_rhi->createDescriptorSetLayout(&mesh_mesh_layout_create_info, m_descriptor_infos[_per_mesh].layout) != RHI_SUCCESS)
+            if (m_rhi->createDescriptorSetLayout(&mesh_mesh_layout_create_info, m_descriptor_infos[_per_mesh].layout) !=
+                RHI_SUCCESS)
             {
                 throw std::runtime_error("create mesh mesh layout");
             }
@@ -598,7 +641,7 @@ namespace Piccolo
             mesh_global_layout_per_drawcall_vertex_blending_storage_buffer_binding.pImmutableSamplers = NULL;
 
             RHIDescriptorSetLayoutBinding& mesh_global_layout_brdfLUT_texture_binding = mesh_global_layout_bindings[3];
-            mesh_global_layout_brdfLUT_texture_binding.binding                       = 3;
+            mesh_global_layout_brdfLUT_texture_binding.binding                        = 3;
             mesh_global_layout_brdfLUT_texture_binding.descriptorType     = RHI_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
             mesh_global_layout_brdfLUT_texture_binding.descriptorCount    = 1;
             mesh_global_layout_brdfLUT_texture_binding.stageFlags         = RHI_SHADER_STAGE_FRAGMENT_BIT;
@@ -631,7 +674,8 @@ namespace Piccolo
                 (sizeof(mesh_global_layout_bindings) / sizeof(mesh_global_layout_bindings[0]));
             mesh_global_layout_create_info.pBindings = mesh_global_layout_bindings;
 
-            if (RHI_SUCCESS != m_rhi->createDescriptorSetLayout(&mesh_global_layout_create_info, m_descriptor_infos[_mesh_global].layout))
+            if (RHI_SUCCESS != m_rhi->createDescriptorSetLayout(&mesh_global_layout_create_info,
+                                                                m_descriptor_infos[_mesh_global].layout))
             {
                 throw std::runtime_error("create mesh global layout");
             }
@@ -652,10 +696,10 @@ namespace Piccolo
             // (set = 2, binding = 1 in fragment shader)
             RHIDescriptorSetLayoutBinding& mesh_material_layout_base_color_texture_binding =
                 mesh_material_layout_bindings[1];
-            mesh_material_layout_base_color_texture_binding.binding         = 1;
-            mesh_material_layout_base_color_texture_binding.descriptorType  = RHI_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-            mesh_material_layout_base_color_texture_binding.descriptorCount = 1;
-            mesh_material_layout_base_color_texture_binding.stageFlags      = RHI_SHADER_STAGE_FRAGMENT_BIT;
+            mesh_material_layout_base_color_texture_binding.binding        = 1;
+            mesh_material_layout_base_color_texture_binding.descriptorType = RHI_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+            mesh_material_layout_base_color_texture_binding.descriptorCount    = 1;
+            mesh_material_layout_base_color_texture_binding.stageFlags         = RHI_SHADER_STAGE_FRAGMENT_BIT;
             mesh_material_layout_base_color_texture_binding.pImmutableSamplers = nullptr;
 
             // (set = 2, binding = 2 in fragment shader)
@@ -689,7 +733,8 @@ namespace Piccolo
             mesh_material_layout_create_info.bindingCount = 6;
             mesh_material_layout_create_info.pBindings    = mesh_material_layout_bindings;
 
-            if (m_rhi->createDescriptorSetLayout(&mesh_material_layout_create_info, m_descriptor_infos[_mesh_per_material].layout) != RHI_SUCCESS)
+            if (m_rhi->createDescriptorSetLayout(&mesh_material_layout_create_info,
+                                                 m_descriptor_infos[_mesh_per_material].layout) != RHI_SUCCESS)
             {
                 throw std::runtime_error("create mesh material layout");
             }
@@ -699,14 +744,14 @@ namespace Piccolo
             RHIDescriptorSetLayoutBinding skybox_layout_bindings[2];
 
             RHIDescriptorSetLayoutBinding& skybox_layout_perframe_storage_buffer_binding = skybox_layout_bindings[0];
-            skybox_layout_perframe_storage_buffer_binding.binding                       = 0;
+            skybox_layout_perframe_storage_buffer_binding.binding                        = 0;
             skybox_layout_perframe_storage_buffer_binding.descriptorType  = RHI_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC;
             skybox_layout_perframe_storage_buffer_binding.descriptorCount = 1;
             skybox_layout_perframe_storage_buffer_binding.stageFlags      = RHI_SHADER_STAGE_VERTEX_BIT;
             skybox_layout_perframe_storage_buffer_binding.pImmutableSamplers = NULL;
 
             RHIDescriptorSetLayoutBinding& skybox_layout_specular_texture_binding = skybox_layout_bindings[1];
-            skybox_layout_specular_texture_binding.binding                       = 1;
+            skybox_layout_specular_texture_binding.binding                        = 1;
             skybox_layout_specular_texture_binding.descriptorType     = RHI_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
             skybox_layout_specular_texture_binding.descriptorCount    = 1;
             skybox_layout_specular_texture_binding.stageFlags         = RHI_SHADER_STAGE_FRAGMENT_BIT;
@@ -717,7 +762,8 @@ namespace Piccolo
             skybox_layout_create_info.bindingCount = 2;
             skybox_layout_create_info.pBindings    = skybox_layout_bindings;
 
-            if (RHI_SUCCESS != m_rhi->createDescriptorSetLayout(&skybox_layout_create_info, m_descriptor_infos[_skybox].layout))
+            if (RHI_SUCCESS !=
+                m_rhi->createDescriptorSetLayout(&skybox_layout_create_info, m_descriptor_infos[_skybox].layout))
             {
                 throw std::runtime_error("create skybox layout");
             }
@@ -727,25 +773,26 @@ namespace Piccolo
             RHIDescriptorSetLayoutBinding axis_layout_bindings[2];
 
             RHIDescriptorSetLayoutBinding& axis_layout_perframe_storage_buffer_binding = axis_layout_bindings[0];
-            axis_layout_perframe_storage_buffer_binding.binding                       = 0;
+            axis_layout_perframe_storage_buffer_binding.binding                        = 0;
             axis_layout_perframe_storage_buffer_binding.descriptorType     = RHI_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC;
             axis_layout_perframe_storage_buffer_binding.descriptorCount    = 1;
             axis_layout_perframe_storage_buffer_binding.stageFlags         = RHI_SHADER_STAGE_VERTEX_BIT;
             axis_layout_perframe_storage_buffer_binding.pImmutableSamplers = NULL;
 
             RHIDescriptorSetLayoutBinding& axis_layout_storage_buffer_binding = axis_layout_bindings[1];
-            axis_layout_storage_buffer_binding.binding                       = 1;
-            axis_layout_storage_buffer_binding.descriptorType                = RHI_DESCRIPTOR_TYPE_STORAGE_BUFFER;
-            axis_layout_storage_buffer_binding.descriptorCount               = 1;
-            axis_layout_storage_buffer_binding.stageFlags                    = RHI_SHADER_STAGE_VERTEX_BIT;
-            axis_layout_storage_buffer_binding.pImmutableSamplers            = NULL;
+            axis_layout_storage_buffer_binding.binding                        = 1;
+            axis_layout_storage_buffer_binding.descriptorType                 = RHI_DESCRIPTOR_TYPE_STORAGE_BUFFER;
+            axis_layout_storage_buffer_binding.descriptorCount                = 1;
+            axis_layout_storage_buffer_binding.stageFlags                     = RHI_SHADER_STAGE_VERTEX_BIT;
+            axis_layout_storage_buffer_binding.pImmutableSamplers             = NULL;
 
             RHIDescriptorSetLayoutCreateInfo axis_layout_create_info {};
             axis_layout_create_info.sType        = RHI_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
             axis_layout_create_info.bindingCount = 2;
             axis_layout_create_info.pBindings    = axis_layout_bindings;
 
-            if (RHI_SUCCESS != m_rhi->createDescriptorSetLayout(&axis_layout_create_info, m_descriptor_infos[_axis].layout))
+            if (RHI_SUCCESS !=
+                m_rhi->createDescriptorSetLayout(&axis_layout_create_info, m_descriptor_infos[_axis].layout))
             {
                 throw std::runtime_error("create axis layout");
             }
@@ -756,8 +803,8 @@ namespace Piccolo
 
             RHIDescriptorSetLayoutBinding& gbuffer_normal_global_layout_input_attachment_binding =
                 gbuffer_lighting_global_layout_bindings[0];
-            gbuffer_normal_global_layout_input_attachment_binding.binding         = 0;
-            gbuffer_normal_global_layout_input_attachment_binding.descriptorType  = RHI_DESCRIPTOR_TYPE_INPUT_ATTACHMENT;
+            gbuffer_normal_global_layout_input_attachment_binding.binding        = 0;
+            gbuffer_normal_global_layout_input_attachment_binding.descriptorType = RHI_DESCRIPTOR_TYPE_INPUT_ATTACHMENT;
             gbuffer_normal_global_layout_input_attachment_binding.descriptorCount = 1;
             gbuffer_normal_global_layout_input_attachment_binding.stageFlags      = RHI_SHADER_STAGE_FRAGMENT_BIT;
 
@@ -773,8 +820,8 @@ namespace Piccolo
 
             RHIDescriptorSetLayoutBinding& gbuffer_albedo_global_layout_input_attachment_binding =
                 gbuffer_lighting_global_layout_bindings[2];
-            gbuffer_albedo_global_layout_input_attachment_binding.binding         = 2;
-            gbuffer_albedo_global_layout_input_attachment_binding.descriptorType  = RHI_DESCRIPTOR_TYPE_INPUT_ATTACHMENT;
+            gbuffer_albedo_global_layout_input_attachment_binding.binding        = 2;
+            gbuffer_albedo_global_layout_input_attachment_binding.descriptorType = RHI_DESCRIPTOR_TYPE_INPUT_ATTACHMENT;
             gbuffer_albedo_global_layout_input_attachment_binding.descriptorCount = 1;
             gbuffer_albedo_global_layout_input_attachment_binding.stageFlags      = RHI_SHADER_STAGE_FRAGMENT_BIT;
 
@@ -793,7 +840,8 @@ namespace Piccolo
                 sizeof(gbuffer_lighting_global_layout_bindings) / sizeof(gbuffer_lighting_global_layout_bindings[0]);
             gbuffer_lighting_global_layout_create_info.pBindings = gbuffer_lighting_global_layout_bindings;
 
-            if (RHI_SUCCESS != m_rhi->createDescriptorSetLayout(&gbuffer_lighting_global_layout_create_info, m_descriptor_infos[_deferred_lighting].layout))
+            if (RHI_SUCCESS != m_rhi->createDescriptorSetLayout(&gbuffer_lighting_global_layout_create_info,
+                                                                m_descriptor_infos[_deferred_lighting].layout))
             {
                 throw std::runtime_error("create deferred lighting global layout");
             }
@@ -806,15 +854,17 @@ namespace Piccolo
 
         // mesh gbuffer
         {
-            RHIDescriptorSetLayout*      descriptorset_layouts[3] = {m_descriptor_infos[_mesh_global].layout,
-                                                              m_descriptor_infos[_per_mesh].layout,
-                                                              m_descriptor_infos[_mesh_per_material].layout};
+            RHIDescriptorSetLayout*     descriptorset_layouts[3] = {m_descriptor_infos[_mesh_global].layout,
+                                                                    m_descriptor_infos[_per_mesh].layout,
+                                                                    m_descriptor_infos[_mesh_per_material].layout};
             RHIPipelineLayoutCreateInfo pipeline_layout_create_info {};
             pipeline_layout_create_info.sType          = RHI_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
             pipeline_layout_create_info.setLayoutCount = 3;
             pipeline_layout_create_info.pSetLayouts    = descriptorset_layouts;
 
-            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info, m_render_pipelines[_render_pipeline_type_mesh_gbuffer].layout) != RHI_SUCCESS)
+            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info,
+                                            m_render_pipelines[_render_pipeline_type_mesh_gbuffer].layout) !=
+                RHI_SUCCESS)
             {
                 throw std::runtime_error("create mesh gbuffer pipeline layout");
             }
@@ -835,10 +885,10 @@ namespace Piccolo
             frag_pipeline_shader_stage_create_info.pName  = "main";
 
             RHIPipelineShaderStageCreateInfo shader_stages[] = {vert_pipeline_shader_stage_create_info,
-                                                               frag_pipeline_shader_stage_create_info};
+                                                                frag_pipeline_shader_stage_create_info};
 
-            auto                                 vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
-            auto                                 vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
+            auto vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
+            auto vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
             RHIPipelineVertexInputStateCreateInfo vertex_input_state_create_info {};
             vertex_input_state_create_info.sType = RHI_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
             vertex_input_state_create_info.vertexBindingDescriptionCount   = vertex_binding_descriptions.size();
@@ -887,7 +937,7 @@ namespace Piccolo
             color_blend_attachments[0].dstAlphaBlendFactor = RHI_BLEND_FACTOR_ZERO;
             color_blend_attachments[0].alphaBlendOp        = RHI_BLEND_OP_ADD;
             color_blend_attachments[1].colorWriteMask      = RHI_COLOR_COMPONENT_R_BIT | RHI_COLOR_COMPONENT_G_BIT |
-                                                             RHI_COLOR_COMPONENT_B_BIT | RHI_COLOR_COMPONENT_A_BIT;
+                                                        RHI_COLOR_COMPONENT_B_BIT | RHI_COLOR_COMPONENT_A_BIT;
             color_blend_attachments[1].blendEnable         = RHI_FALSE;
             color_blend_attachments[1].srcColorBlendFactor = RHI_BLEND_FACTOR_ONE;
             color_blend_attachments[1].dstColorBlendFactor = RHI_BLEND_FACTOR_ZERO;
@@ -896,7 +946,7 @@ namespace Piccolo
             color_blend_attachments[1].dstAlphaBlendFactor = RHI_BLEND_FACTOR_ZERO;
             color_blend_attachments[1].alphaBlendOp        = RHI_BLEND_OP_ADD;
             color_blend_attachments[2].colorWriteMask      = RHI_COLOR_COMPONENT_R_BIT | RHI_COLOR_COMPONENT_G_BIT |
-                                                             RHI_COLOR_COMPONENT_B_BIT | RHI_COLOR_COMPONENT_A_BIT;
+                                                        RHI_COLOR_COMPONENT_B_BIT | RHI_COLOR_COMPONENT_A_BIT;
             color_blend_attachments[2].blendEnable         = RHI_FALSE;
             color_blend_attachments[2].srcColorBlendFactor = RHI_BLEND_FACTOR_ONE;
             color_blend_attachments[2].dstColorBlendFactor = RHI_BLEND_FACTOR_ZERO;
@@ -925,7 +975,7 @@ namespace Piccolo
             depth_stencil_create_info.depthBoundsTestEnable = RHI_FALSE;
             depth_stencil_create_info.stencilTestEnable     = RHI_FALSE;
 
-            RHIDynamicState                   dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
+            RHIDynamicState dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
             RHIPipelineDynamicStateCreateInfo dynamic_state_create_info {};
             dynamic_state_create_info.sType             = RHI_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
             dynamic_state_create_info.dynamicStateCount = 2;
@@ -948,10 +998,9 @@ namespace Piccolo
             pipelineInfo.basePipelineHandle  = RHI_NULL_HANDLE;
             pipelineInfo.pDynamicState       = &dynamic_state_create_info;
 
-            if (RHI_SUCCESS != m_rhi->createGraphicsPipelines(RHI_NULL_HANDLE,
-                                                              1,
-                                                              &pipelineInfo,
-                                                              m_render_pipelines[_render_pipeline_type_mesh_gbuffer].pipeline))
+            if (RHI_SUCCESS !=
+                m_rhi->createGraphicsPipelines(
+                    RHI_NULL_HANDLE, 1, &pipelineInfo, m_render_pipelines[_render_pipeline_type_mesh_gbuffer].pipeline))
             {
                 throw std::runtime_error("create mesh gbuffer graphics pipeline");
             }
@@ -962,17 +1011,18 @@ namespace Piccolo
 
         // deferred lighting
         {
-            RHIDescriptorSetLayout*      descriptorset_layouts[3] = {m_descriptor_infos[_mesh_global].layout,
-                                                              m_descriptor_infos[_deferred_lighting].layout,
-                                                              m_descriptor_infos[_skybox].layout};
+            RHIDescriptorSetLayout*     descriptorset_layouts[3] = {m_descriptor_infos[_mesh_global].layout,
+                                                                    m_descriptor_infos[_deferred_lighting].layout,
+                                                                    m_descriptor_infos[_skybox].layout};
             RHIPipelineLayoutCreateInfo pipeline_layout_create_info {};
             pipeline_layout_create_info.sType = RHI_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
             pipeline_layout_create_info.setLayoutCount =
                 sizeof(descriptorset_layouts) / sizeof(descriptorset_layouts[0]);
             pipeline_layout_create_info.pSetLayouts = descriptorset_layouts;
 
-            if (RHI_SUCCESS != m_rhi->createPipelineLayout(&pipeline_layout_create_info,
-                                                           m_render_pipelines[_render_pipeline_type_deferred_lighting].layout))
+            if (RHI_SUCCESS !=
+                m_rhi->createPipelineLayout(&pipeline_layout_create_info,
+                                            m_render_pipelines[_render_pipeline_type_deferred_lighting].layout))
             {
                 throw std::runtime_error("create deferred lighting pipeline layout");
             }
@@ -994,10 +1044,10 @@ namespace Piccolo
             frag_pipeline_shader_stage_create_info.pName  = "main";
 
             RHIPipelineShaderStageCreateInfo shader_stages[] = {vert_pipeline_shader_stage_create_info,
-                                                               frag_pipeline_shader_stage_create_info};
+                                                                frag_pipeline_shader_stage_create_info};
 
-            auto                                 vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
-            auto                                 vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
+            auto vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
+            auto vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
             RHIPipelineVertexInputStateCreateInfo vertex_input_state_create_info {};
             vertex_input_state_create_info.sType = RHI_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
             vertex_input_state_create_info.vertexBindingDescriptionCount = 0;
@@ -1066,7 +1116,7 @@ namespace Piccolo
             depth_stencil_create_info.depthBoundsTestEnable = RHI_FALSE;
             depth_stencil_create_info.stencilTestEnable     = RHI_FALSE;
 
-            RHIDynamicState                   dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
+            RHIDynamicState dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
             RHIPipelineDynamicStateCreateInfo dynamic_state_create_info {};
             dynamic_state_create_info.sType             = RHI_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
             dynamic_state_create_info.dynamicStateCount = 2;
@@ -1089,10 +1139,11 @@ namespace Piccolo
             pipelineInfo.basePipelineHandle  = RHI_NULL_HANDLE;
             pipelineInfo.pDynamicState       = &dynamic_state_create_info;
 
-            if (RHI_SUCCESS != m_rhi->createGraphicsPipelines(RHI_NULL_HANDLE,
-                                                              1,
-                                                              &pipelineInfo,
-                                                              m_render_pipelines[_render_pipeline_type_deferred_lighting].pipeline))
+            if (RHI_SUCCESS !=
+                m_rhi->createGraphicsPipelines(RHI_NULL_HANDLE,
+                                               1,
+                                               &pipelineInfo,
+                                               m_render_pipelines[_render_pipeline_type_deferred_lighting].pipeline))
             {
                 throw std::runtime_error("create deferred lighting graphics pipeline");
             }
@@ -1103,15 +1154,17 @@ namespace Piccolo
 
         // mesh lighting
         {
-            RHIDescriptorSetLayout*      descriptorset_layouts[3] = {m_descriptor_infos[_mesh_global].layout,
-                                                                     m_descriptor_infos[_per_mesh].layout,
-                                                                     m_descriptor_infos[_mesh_per_material].layout};
+            RHIDescriptorSetLayout*     descriptorset_layouts[3] = {m_descriptor_infos[_mesh_global].layout,
+                                                                    m_descriptor_infos[_per_mesh].layout,
+                                                                    m_descriptor_infos[_mesh_per_material].layout};
             RHIPipelineLayoutCreateInfo pipeline_layout_create_info {};
             pipeline_layout_create_info.sType          = RHI_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
             pipeline_layout_create_info.setLayoutCount = 3;
             pipeline_layout_create_info.pSetLayouts    = descriptorset_layouts;
 
-            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info, m_render_pipelines[_render_pipeline_type_mesh_lighting].layout) != RHI_SUCCESS)
+            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info,
+                                            m_render_pipelines[_render_pipeline_type_mesh_lighting].layout) !=
+                RHI_SUCCESS)
             {
                 throw std::runtime_error("create mesh lighting pipeline layout");
             }
@@ -1132,10 +1185,10 @@ namespace Piccolo
             frag_pipeline_shader_stage_create_info.pName  = "main";
 
             RHIPipelineShaderStageCreateInfo shader_stages[] = {vert_pipeline_shader_stage_create_info,
-                                                               frag_pipeline_shader_stage_create_info};
+                                                                frag_pipeline_shader_stage_create_info};
 
-            auto                                 vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
-            auto                                 vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
+            auto vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
+            auto vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
             RHIPipelineVertexInputStateCreateInfo vertex_input_state_create_info {};
             vertex_input_state_create_info.sType = RHI_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
             vertex_input_state_create_info.vertexBindingDescriptionCount   = vertex_binding_descriptions.size();
@@ -1204,7 +1257,7 @@ namespace Piccolo
             depth_stencil_create_info.depthBoundsTestEnable = RHI_FALSE;
             depth_stencil_create_info.stencilTestEnable     = RHI_FALSE;
 
-            RHIDynamicState                   dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
+            RHIDynamicState dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
             RHIPipelineDynamicStateCreateInfo dynamic_state_create_info {};
             dynamic_state_create_info.sType             = RHI_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
             dynamic_state_create_info.dynamicStateCount = 2;
@@ -1228,9 +1281,9 @@ namespace Piccolo
             pipelineInfo.pDynamicState       = &dynamic_state_create_info;
 
             if (m_rhi->createGraphicsPipelines(RHI_NULL_HANDLE,
-                1,
-                &pipelineInfo,
-                m_render_pipelines[_render_pipeline_type_mesh_lighting].pipeline) !=
+                                               1,
+                                               &pipelineInfo,
+                                               m_render_pipelines[_render_pipeline_type_mesh_lighting].pipeline) !=
                 RHI_SUCCESS)
             {
                 throw std::runtime_error("create mesh lighting graphics pipeline");
@@ -1242,13 +1295,14 @@ namespace Piccolo
 
         // skybox
         {
-            RHIDescriptorSetLayout*      descriptorset_layouts[1] = {m_descriptor_infos[_skybox].layout};
+            RHIDescriptorSetLayout*     descriptorset_layouts[1] = {m_descriptor_infos[_skybox].layout};
             RHIPipelineLayoutCreateInfo pipeline_layout_create_info {};
             pipeline_layout_create_info.sType          = RHI_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
             pipeline_layout_create_info.setLayoutCount = 1;
             pipeline_layout_create_info.pSetLayouts    = descriptorset_layouts;
 
-            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info, m_render_pipelines[_render_pipeline_type_skybox].layout) != RHI_SUCCESS)
+            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info,
+                                            m_render_pipelines[_render_pipeline_type_skybox].layout) != RHI_SUCCESS)
             {
                 throw std::runtime_error("create skybox pipeline layout");
             }
@@ -1270,10 +1324,10 @@ namespace Piccolo
             frag_pipeline_shader_stage_create_info.pName  = "main";
 
             RHIPipelineShaderStageCreateInfo shader_stages[] = {vert_pipeline_shader_stage_create_info,
-                                                               frag_pipeline_shader_stage_create_info};
+                                                                frag_pipeline_shader_stage_create_info};
 
-            auto                                 vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
-            auto                                 vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
+            auto vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
+            auto vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
             RHIPipelineVertexInputStateCreateInfo vertex_input_state_create_info {};
             vertex_input_state_create_info.sType = RHI_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
             vertex_input_state_create_info.vertexBindingDescriptionCount   = 0;
@@ -1342,7 +1396,7 @@ namespace Piccolo
             depth_stencil_create_info.depthBoundsTestEnable = RHI_FALSE;
             depth_stencil_create_info.stencilTestEnable     = RHI_FALSE;
 
-            RHIDynamicState                   dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
+            RHIDynamicState dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
             RHIPipelineDynamicStateCreateInfo dynamic_state_create_info {};
             dynamic_state_create_info.sType             = RHI_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
             dynamic_state_create_info.dynamicStateCount = 2;
@@ -1365,10 +1419,9 @@ namespace Piccolo
             pipelineInfo.basePipelineHandle  = RHI_NULL_HANDLE;
             pipelineInfo.pDynamicState       = &dynamic_state_create_info;
 
-            if (RHI_SUCCESS != m_rhi->createGraphicsPipelines(RHI_NULL_HANDLE,
-                                                              1,
-                                                              &pipelineInfo,
-                                                              m_render_pipelines[_render_pipeline_type_skybox].pipeline))
+            if (RHI_SUCCESS !=
+                m_rhi->createGraphicsPipelines(
+                    RHI_NULL_HANDLE, 1, &pipelineInfo, m_render_pipelines[_render_pipeline_type_skybox].pipeline))
             {
                 throw std::runtime_error("create skybox graphics pipeline");
             }
@@ -1385,7 +1438,8 @@ namespace Piccolo
             pipeline_layout_create_info.setLayoutCount = 1;
             pipeline_layout_create_info.pSetLayouts    = descriptorset_layouts;
 
-            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info, m_render_pipelines[_render_pipeline_type_axis].layout) != RHI_SUCCESS)
+            if (m_rhi->createPipelineLayout(&pipeline_layout_create_info,
+                                            m_render_pipelines[_render_pipeline_type_axis].layout) != RHI_SUCCESS)
             {
                 throw std::runtime_error("create axis pipeline layout");
             }
@@ -1407,10 +1461,10 @@ namespace Piccolo
             frag_pipeline_shader_stage_create_info.pName  = "main";
 
             RHIPipelineShaderStageCreateInfo shader_stages[] = {vert_pipeline_shader_stage_create_info,
-                                                               frag_pipeline_shader_stage_create_info};
+                                                                frag_pipeline_shader_stage_create_info};
 
-            auto                                 vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
-            auto                                 vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
+            auto vertex_binding_descriptions   = MeshVertex::getBindingDescriptions();
+            auto vertex_attribute_descriptions = MeshVertex::getAttributeDescriptions();
             RHIPipelineVertexInputStateCreateInfo vertex_input_state_create_info {};
             vertex_input_state_create_info.sType = RHI_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
             vertex_input_state_create_info.vertexBindingDescriptionCount   = vertex_binding_descriptions.size();
@@ -1478,7 +1532,7 @@ namespace Piccolo
             depth_stencil_create_info.depthBoundsTestEnable = RHI_FALSE;
             depth_stencil_create_info.stencilTestEnable     = RHI_FALSE;
 
-            RHIDynamicState                   dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
+            RHIDynamicState dynamic_states[] = {RHI_DYNAMIC_STATE_VIEWPORT, RHI_DYNAMIC_STATE_SCISSOR};
             RHIPipelineDynamicStateCreateInfo dynamic_state_create_info {};
             dynamic_state_create_info.sType             = RHI_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
             dynamic_state_create_info.dynamicStateCount = 2;
@@ -1501,10 +1555,9 @@ namespace Piccolo
             pipelineInfo.basePipelineHandle  = RHI_NULL_HANDLE;
             pipelineInfo.pDynamicState       = &dynamic_state_create_info;
 
-            if (RHI_SUCCESS != m_rhi->createGraphicsPipelines(RHI_NULL_HANDLE,
-                                                              1,
-                                                              &pipelineInfo,
-                                                              m_render_pipelines[_render_pipeline_type_axis].pipeline))
+            if (RHI_SUCCESS !=
+                m_rhi->createGraphicsPipelines(
+                    RHI_NULL_HANDLE, 1, &pipelineInfo, m_render_pipelines[_render_pipeline_type_axis].pipeline))
             {
                 throw std::runtime_error("create axis graphics pipeline");
             }
@@ -1532,7 +1585,8 @@ namespace Piccolo
         mesh_global_descriptor_set_alloc_info.descriptorSetCount = 1;
         mesh_global_descriptor_set_alloc_info.pSetLayouts        = &m_descriptor_infos[_mesh_global].layout;
 
-        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&mesh_global_descriptor_set_alloc_info, m_descriptor_infos[_mesh_global].descriptor_set))
+        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&mesh_global_descriptor_set_alloc_info,
+                                                         m_descriptor_infos[_mesh_global].descriptor_set))
         {
             throw std::runtime_error("allocate mesh global descriptor set");
         }
@@ -1547,15 +1601,15 @@ namespace Piccolo
                m_global_render_resource->_storage_buffer._max_storage_buffer_range);
 
         RHIDescriptorBufferInfo mesh_perdrawcall_storage_buffer_info = {};
-        mesh_perdrawcall_storage_buffer_info.offset                 = 0;
-        mesh_perdrawcall_storage_buffer_info.range                  = sizeof(MeshPerdrawcallStorageBufferObject);
+        mesh_perdrawcall_storage_buffer_info.offset                  = 0;
+        mesh_perdrawcall_storage_buffer_info.range                   = sizeof(MeshPerdrawcallStorageBufferObject);
         mesh_perdrawcall_storage_buffer_info.buffer =
             m_global_render_resource->_storage_buffer._global_upload_ringbuffer;
         assert(mesh_perdrawcall_storage_buffer_info.range <
                m_global_render_resource->_storage_buffer._max_storage_buffer_range);
 
         RHIDescriptorBufferInfo mesh_per_drawcall_vertex_blending_storage_buffer_info = {};
-        mesh_per_drawcall_vertex_blending_storage_buffer_info.offset                 = 0;
+        mesh_per_drawcall_vertex_blending_storage_buffer_info.offset                  = 0;
         mesh_per_drawcall_vertex_blending_storage_buffer_info.range =
             sizeof(MeshPerdrawcallVertexBlendingStorageBufferObject);
         mesh_per_drawcall_vertex_blending_storage_buffer_info.buffer =
@@ -1579,16 +1633,14 @@ namespace Piccolo
         specular_texture_image_info.imageView   = m_global_render_resource->_ibl_resource._specular_texture_image_view;
         specular_texture_image_info.imageLayout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
-        RHIDescriptorImageInfo point_light_shadow_texture_image_info{};
-        point_light_shadow_texture_image_info.sampler =
-            m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
-        point_light_shadow_texture_image_info.imageView = m_point_light_shadow_color_image_view;
+        RHIDescriptorImageInfo point_light_shadow_texture_image_info {};
+        point_light_shadow_texture_image_info.sampler     = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
+        point_light_shadow_texture_image_info.imageView   = m_point_light_shadow_color_image_view;
         point_light_shadow_texture_image_info.imageLayout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
-        RHIDescriptorImageInfo directional_light_shadow_texture_image_info{};
-        directional_light_shadow_texture_image_info.sampler =
-            m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
-        directional_light_shadow_texture_image_info.imageView = m_directional_light_shadow_color_image_view;
+        RHIDescriptorImageInfo directional_light_shadow_texture_image_info {};
+        directional_light_shadow_texture_image_info.sampler = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
+        directional_light_shadow_texture_image_info.imageView   = m_directional_light_shadow_color_image_view;
         directional_light_shadow_texture_image_info.imageLayout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIWriteDescriptorSet mesh_descriptor_writes_info[8];
@@ -1660,14 +1712,15 @@ namespace Piccolo
         skybox_descriptor_set_alloc_info.descriptorSetCount = 1;
         skybox_descriptor_set_alloc_info.pSetLayouts        = &m_descriptor_infos[_skybox].layout;
 
-        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&skybox_descriptor_set_alloc_info, m_descriptor_infos[_skybox].descriptor_set))
+        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&skybox_descriptor_set_alloc_info,
+                                                         m_descriptor_infos[_skybox].descriptor_set))
         {
             throw std::runtime_error("allocate skybox descriptor set");
         }
 
         RHIDescriptorBufferInfo mesh_perframe_storage_buffer_info = {};
-        mesh_perframe_storage_buffer_info.offset                 = 0;
-        mesh_perframe_storage_buffer_info.range                  = sizeof(MeshPerframeStorageBufferObject);
+        mesh_perframe_storage_buffer_info.offset                  = 0;
+        mesh_perframe_storage_buffer_info.range                   = sizeof(MeshPerframeStorageBufferObject);
         mesh_perframe_storage_buffer_info.buffer = m_global_render_resource->_storage_buffer._global_upload_ringbuffer;
         assert(mesh_perframe_storage_buffer_info.range <
                m_global_render_resource->_storage_buffer._max_storage_buffer_range);
@@ -1709,21 +1762,22 @@ namespace Piccolo
         axis_descriptor_set_alloc_info.descriptorSetCount = 1;
         axis_descriptor_set_alloc_info.pSetLayouts        = &m_descriptor_infos[_axis].layout;
 
-        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&axis_descriptor_set_alloc_info, m_descriptor_infos[_axis].descriptor_set))
+        if (RHI_SUCCESS !=
+            m_rhi->allocateDescriptorSets(&axis_descriptor_set_alloc_info, m_descriptor_infos[_axis].descriptor_set))
         {
             throw std::runtime_error("allocate axis descriptor set");
         }
 
         RHIDescriptorBufferInfo mesh_perframe_storage_buffer_info = {};
-        mesh_perframe_storage_buffer_info.offset                 = 0;
-        mesh_perframe_storage_buffer_info.range                  = sizeof(MeshPerframeStorageBufferObject);
+        mesh_perframe_storage_buffer_info.offset                  = 0;
+        mesh_perframe_storage_buffer_info.range                   = sizeof(MeshPerframeStorageBufferObject);
         mesh_perframe_storage_buffer_info.buffer = m_global_render_resource->_storage_buffer._global_upload_ringbuffer;
         assert(mesh_perframe_storage_buffer_info.range <
                m_global_render_resource->_storage_buffer._max_storage_buffer_range);
 
         RHIDescriptorBufferInfo axis_storage_buffer_info = {};
-        axis_storage_buffer_info.offset                 = 0;
-        axis_storage_buffer_info.range                  = sizeof(AxisStorageBufferObject);
+        axis_storage_buffer_info.offset                  = 0;
+        axis_storage_buffer_info.range                   = sizeof(AxisStorageBufferObject);
         axis_storage_buffer_info.buffer = m_global_render_resource->_storage_buffer._axis_inefficient_storage_buffer;
 
         RHIWriteDescriptorSet axis_descriptor_writes_info[2];
@@ -1746,10 +1800,11 @@ namespace Piccolo
         axis_descriptor_writes_info[1].descriptorCount = 1;
         axis_descriptor_writes_info[1].pBufferInfo     = &axis_storage_buffer_info;
 
-        m_rhi->updateDescriptorSets((uint32_t)(sizeof(axis_descriptor_writes_info) / sizeof(axis_descriptor_writes_info[0])),
-                                    axis_descriptor_writes_info,
-                                    0,
-                                    NULL);
+        m_rhi->updateDescriptorSets(
+            (uint32_t)(sizeof(axis_descriptor_writes_info) / sizeof(axis_descriptor_writes_info[0])),
+            axis_descriptor_writes_info,
+            0,
+            NULL);
     }
 
     void MainCameraPass::setupGbufferLightingDescriptorSet()
@@ -1761,7 +1816,8 @@ namespace Piccolo
         gbuffer_light_global_descriptor_set_alloc_info.descriptorSetCount = 1;
         gbuffer_light_global_descriptor_set_alloc_info.pSetLayouts = &m_descriptor_infos[_deferred_lighting].layout;
 
-        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&gbuffer_light_global_descriptor_set_alloc_info, m_descriptor_infos[_deferred_lighting].descriptor_set))
+        if (RHI_SUCCESS != m_rhi->allocateDescriptorSets(&gbuffer_light_global_descriptor_set_alloc_info,
+                                                         m_descriptor_infos[_deferred_lighting].descriptor_set))
         {
             throw std::runtime_error("allocate gbuffer light global descriptor set");
         }
@@ -1770,26 +1826,27 @@ namespace Piccolo
     void MainCameraPass::setupFramebufferDescriptorSet()
     {
         RHIDescriptorImageInfo gbuffer_normal_input_attachment_info = {};
-        gbuffer_normal_input_attachment_info.sampler = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
+        gbuffer_normal_input_attachment_info.sampler     = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
         gbuffer_normal_input_attachment_info.imageView   = m_framebuffer.attachments[_main_camera_pass_gbuffer_a].view;
         gbuffer_normal_input_attachment_info.imageLayout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIDescriptorImageInfo gbuffer_metallic_roughness_shadingmodeid_input_attachment_info = {};
-        gbuffer_metallic_roughness_shadingmodeid_input_attachment_info.sampler = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
+        gbuffer_metallic_roughness_shadingmodeid_input_attachment_info.sampler =
+            m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
         gbuffer_metallic_roughness_shadingmodeid_input_attachment_info.imageView =
             m_framebuffer.attachments[_main_camera_pass_gbuffer_b].view;
         gbuffer_metallic_roughness_shadingmodeid_input_attachment_info.imageLayout =
             RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIDescriptorImageInfo gbuffer_albedo_input_attachment_info = {};
-        gbuffer_albedo_input_attachment_info.sampler = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
+        gbuffer_albedo_input_attachment_info.sampler     = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
         gbuffer_albedo_input_attachment_info.imageView   = m_framebuffer.attachments[_main_camera_pass_gbuffer_c].view;
         gbuffer_albedo_input_attachment_info.imageLayout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIDescriptorImageInfo depth_input_attachment_info = {};
-        depth_input_attachment_info.sampler = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
-        depth_input_attachment_info.imageView   = m_rhi->getDepthImageInfo().depth_image_view;
-        depth_input_attachment_info.imageLayout = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+        depth_input_attachment_info.sampler                = m_rhi->getOrCreateDefaultSampler(Default_Sampler_Nearest);
+        depth_input_attachment_info.imageView              = m_rhi->getDepthImageInfo().depth_image_view;
+        depth_input_attachment_info.imageLayout            = RHI_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 
         RHIWriteDescriptorSet deferred_lighting_descriptor_writes_info[4];
 
@@ -1844,7 +1901,7 @@ namespace Piccolo
         depth_descriptor_input_attachment_write_info.pImageInfo      = &depth_input_attachment_info;
 
         m_rhi->updateDescriptorSets(sizeof(deferred_lighting_descriptor_writes_info) /
-                                    sizeof(deferred_lighting_descriptor_writes_info[0]),
+                                        sizeof(deferred_lighting_descriptor_writes_info[0]),
                                     deferred_lighting_descriptor_writes_info,
                                     0,
                                     NULL);
@@ -1866,7 +1923,7 @@ namespace Piccolo
                 m_framebuffer.attachments[_main_camera_pass_post_process_buffer_odd].view,
                 m_framebuffer.attachments[_main_camera_pass_post_process_buffer_even].view,
                 m_rhi->getDepthImageInfo().depth_image_view,
-                m_rhi->getSwapchainInfo().imageViews[i] };
+                m_rhi->getSwapchainInfo().imageViews[i]};
 
             RHIFramebufferCreateInfo framebuffer_create_info {};
             framebuffer_create_info.sType      = RHI_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
@@ -1911,6 +1968,7 @@ namespace Piccolo
     }
 
     void MainCameraPass::draw(ColorGradingPass& color_grading_pass,
+                              VignettePass&     vignette_pass,
                               FXAAPass&         fxaa_pass,
                               ToneMappingPass&  tone_mapping_pass,
                               UIPass&           ui_pass,
@@ -1939,10 +1997,11 @@ namespace Piccolo
             renderpass_begin_info.clearValueCount = (sizeof(clear_values) / sizeof(clear_values[0]));
             renderpass_begin_info.pClearValues    = clear_values;
 
-            m_rhi->cmdBeginRenderPassPFN(m_rhi->getCurrentCommandBuffer(), &renderpass_begin_info, RHI_SUBPASS_CONTENTS_INLINE);
+            m_rhi->cmdBeginRenderPassPFN(
+                m_rhi->getCurrentCommandBuffer(), &renderpass_begin_info, RHI_SUBPASS_CONTENTS_INLINE);
         }
 
-        float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         m_rhi->pushEvent(m_rhi->getCurrentCommandBuffer(), "BasePass", color);
 
         drawMeshGbuffer();
@@ -1972,6 +2031,10 @@ namespace Piccolo
         m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
 
         color_grading_pass.draw();
+
+        m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
+
+        vignette_pass.draw();
 
         m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
 
@@ -2012,6 +2075,7 @@ namespace Piccolo
     }
 
     void MainCameraPass::drawForward(ColorGradingPass& color_grading_pass,
+                                     VignettePass&     vignette_pass,
                                      FXAAPass&         fxaa_pass,
                                      ToneMappingPass&  tone_mapping_pass,
                                      UIPass&           ui_pass,
@@ -2038,14 +2102,15 @@ namespace Piccolo
             renderpass_begin_info.clearValueCount                    = (sizeof(clear_values) / sizeof(clear_values[0]));
             renderpass_begin_info.pClearValues                       = clear_values;
 
-            m_rhi->cmdBeginRenderPassPFN(m_rhi->getCurrentCommandBuffer(), &renderpass_begin_info, RHI_SUBPASS_CONTENTS_INLINE);
+            m_rhi->cmdBeginRenderPassPFN(
+                m_rhi->getCurrentCommandBuffer(), &renderpass_begin_info, RHI_SUBPASS_CONTENTS_INLINE);
         }
 
         m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
 
         m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
 
-        float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         m_rhi->pushEvent(m_rhi->getCurrentCommandBuffer(), "Forward Lighting", color);
 
         drawMeshLighting();
@@ -2061,6 +2126,10 @@ namespace Piccolo
         m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
 
         color_grading_pass.draw();
+
+        m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
+
+        vignette_pass.draw();
 
         m_rhi->cmdNextSubpassPFN(m_rhi->getCurrentCommandBuffer(), RHI_SUBPASS_CONTENTS_INLINE);
 
@@ -2128,7 +2197,7 @@ namespace Piccolo
             mesh_nodes.push_back(temp);
         }
 
-        float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         m_rhi->pushEvent(m_rhi->getCurrentCommandBuffer(), "Mesh GBuffer", color);
 
         m_rhi->cmdBindPipelinePFN(m_rhi->getCurrentCommandBuffer(),
@@ -2138,19 +2207,16 @@ namespace Piccolo
         m_rhi->cmdSetScissorPFN(m_rhi->getCurrentCommandBuffer(), 0, 1, m_rhi->getSwapchainInfo().scissor);
 
         // perframe storage buffer
-        uint32_t perframe_dynamic_offset =
-            roundUp(m_global_render_resource->_storage_buffer
-                        ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
-                    m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
+        uint32_t perframe_dynamic_offset = roundUp(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
+            m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
 
         m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] =
             perframe_dynamic_offset + sizeof(MeshPerframeStorageBufferObject);
-        assert(m_global_render_resource->_storage_buffer
-                   ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
-               (m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
-                m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
+        assert(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
+            (m_global_render_resource->_storage_buffer._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
+             m_global_render_resource->_storage_buffer._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
 
         (*reinterpret_cast<MeshPerframeStorageBufferObject*>(
             reinterpret_cast<uintptr_t>(
@@ -2192,17 +2258,17 @@ namespace Piccolo
                                                     0,
                                                     NULL);
 
-
-                    RHIBuffer* vertex_buffers[] = {mesh.mesh_vertex_position_buffer,
-                                                 mesh.mesh_vertex_varying_enable_blending_buffer,
-                                                 mesh.mesh_vertex_varying_buffer};
+                    RHIBuffer*    vertex_buffers[] = {mesh.mesh_vertex_position_buffer,
+                                                      mesh.mesh_vertex_varying_enable_blending_buffer,
+                                                      mesh.mesh_vertex_varying_buffer};
                     RHIDeviceSize offsets[]        = {0, 0, 0};
                     m_rhi->cmdBindVertexBuffersPFN(m_rhi->getCurrentCommandBuffer(),
                                                    0,
                                                    (sizeof(vertex_buffers) / sizeof(vertex_buffers[0])),
                                                    vertex_buffers,
                                                    offsets);
-                    m_rhi->cmdBindIndexBufferPFN(m_rhi->getCurrentCommandBuffer(), mesh.mesh_index_buffer, 0, RHI_INDEX_TYPE_UINT16);
+                    m_rhi->cmdBindIndexBufferPFN(
+                        m_rhi->getCurrentCommandBuffer(), mesh.mesh_index_buffer, 0, RHI_INDEX_TYPE_UINT16);
 
                     uint32_t drawcall_max_instance_count =
                         (sizeof(MeshPerdrawcallStorageBufferObject::mesh_instances) /
@@ -2315,12 +2381,8 @@ namespace Piccolo
                                                         3,
                                                         dynamic_offsets);
 
-                        m_rhi->cmdDrawIndexedPFN(m_rhi->getCurrentCommandBuffer(),
-                                                 mesh.mesh_index_count,
-                                                 current_instance_count,
-                                                 0,
-                                                 0,
-                                                 0);
+                        m_rhi->cmdDrawIndexedPFN(
+                            m_rhi->getCurrentCommandBuffer(), mesh.mesh_index_count, current_instance_count, 0, 0, 0);
                     }
                 }
             }
@@ -2332,25 +2394,22 @@ namespace Piccolo
     void MainCameraPass::drawDeferredLighting()
     {
         m_rhi->cmdBindPipelinePFN(m_rhi->getCurrentCommandBuffer(),
-            RHI_PIPELINE_BIND_POINT_GRAPHICS,
-            m_render_pipelines[_render_pipeline_type_deferred_lighting].pipeline);
+                                  RHI_PIPELINE_BIND_POINT_GRAPHICS,
+                                  m_render_pipelines[_render_pipeline_type_deferred_lighting].pipeline);
 
         m_rhi->cmdSetViewportPFN(m_rhi->getCurrentCommandBuffer(), 0, 1, m_rhi->getSwapchainInfo().viewport);
         m_rhi->cmdSetScissorPFN(m_rhi->getCurrentCommandBuffer(), 0, 1, m_rhi->getSwapchainInfo().scissor);
 
-        uint32_t perframe_dynamic_offset =
-            roundUp(m_global_render_resource->_storage_buffer
-                        ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
-                    m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
+        uint32_t perframe_dynamic_offset = roundUp(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
+            m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
 
         m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] =
             perframe_dynamic_offset + sizeof(MeshPerframeStorageBufferObject);
-        assert(m_global_render_resource->_storage_buffer
-                   ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
-               (m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
-                m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
+        assert(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
+            (m_global_render_resource->_storage_buffer._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
+             m_global_render_resource->_storage_buffer._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
 
         (*reinterpret_cast<MeshPerframeStorageBufferObject*>(
             reinterpret_cast<uintptr_t>(
@@ -2358,9 +2417,9 @@ namespace Piccolo
             perframe_dynamic_offset)) = m_mesh_perframe_storage_buffer_object;
 
         RHIDescriptorSet* descriptor_sets[3] = {m_descriptor_infos[_mesh_global].descriptor_set,
-                                              m_descriptor_infos[_deferred_lighting].descriptor_set,
-                                              m_descriptor_infos[_skybox].descriptor_set};
-        uint32_t        dynamic_offsets[4] = {perframe_dynamic_offset, perframe_dynamic_offset, 0, 0};
+                                                m_descriptor_infos[_deferred_lighting].descriptor_set,
+                                                m_descriptor_infos[_skybox].descriptor_set};
+        uint32_t          dynamic_offsets[4] = {perframe_dynamic_offset, perframe_dynamic_offset, 0, 0};
         m_rhi->cmdBindDescriptorSetsPFN(m_rhi->getCurrentCommandBuffer(),
                                         RHI_PIPELINE_BIND_POINT_GRAPHICS,
                                         m_render_pipelines[_render_pipeline_type_deferred_lighting].layout,
@@ -2401,7 +2460,7 @@ namespace Piccolo
             mesh_nodes.push_back(temp);
         }
 
-        float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         m_rhi->pushEvent(m_rhi->getCurrentCommandBuffer(), "Model", color);
 
         m_rhi->cmdBindPipelinePFN(m_rhi->getCurrentCommandBuffer(),
@@ -2411,19 +2470,16 @@ namespace Piccolo
         m_rhi->cmdSetScissorPFN(m_rhi->getCurrentCommandBuffer(), 0, 1, m_rhi->getSwapchainInfo().scissor);
 
         // perframe storage buffer
-        uint32_t perframe_dynamic_offset =
-            roundUp(m_global_render_resource->_storage_buffer
-                        ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
-                    m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
+        uint32_t perframe_dynamic_offset = roundUp(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
+            m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
 
         m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] =
             perframe_dynamic_offset + sizeof(MeshPerframeStorageBufferObject);
-        assert(m_global_render_resource->_storage_buffer
-                   ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
-               (m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
-                m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
+        assert(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
+            (m_global_render_resource->_storage_buffer._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
+             m_global_render_resource->_storage_buffer._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
 
         (*reinterpret_cast<MeshPerframeStorageBufferObject*>(
             reinterpret_cast<uintptr_t>(
@@ -2465,16 +2521,17 @@ namespace Piccolo
                                                     0,
                                                     NULL);
 
-                    RHIBuffer*     vertex_buffers[3] = {mesh.mesh_vertex_position_buffer,
-                                                 mesh.mesh_vertex_varying_enable_blending_buffer,
-                                                 mesh.mesh_vertex_varying_buffer};
-                    RHIDeviceSize offsets[]        = {0, 0, 0};
+                    RHIBuffer*    vertex_buffers[3] = {mesh.mesh_vertex_position_buffer,
+                                                       mesh.mesh_vertex_varying_enable_blending_buffer,
+                                                       mesh.mesh_vertex_varying_buffer};
+                    RHIDeviceSize offsets[]         = {0, 0, 0};
                     m_rhi->cmdBindVertexBuffersPFN(m_rhi->getCurrentCommandBuffer(),
                                                    0,
                                                    (sizeof(vertex_buffers) / sizeof(vertex_buffers[0])),
                                                    vertex_buffers,
                                                    offsets);
-                    m_rhi->cmdBindIndexBufferPFN(m_rhi->getCurrentCommandBuffer(), mesh.mesh_index_buffer, 0, RHI_INDEX_TYPE_UINT16);
+                    m_rhi->cmdBindIndexBufferPFN(
+                        m_rhi->getCurrentCommandBuffer(), mesh.mesh_index_buffer, 0, RHI_INDEX_TYPE_UINT16);
 
                     uint32_t drawcall_max_instance_count =
                         (sizeof(MeshPerdrawcallStorageBufferObject::mesh_instances) /
@@ -2587,12 +2644,8 @@ namespace Piccolo
                                                         3,
                                                         dynamic_offsets);
 
-                        m_rhi->cmdDrawIndexedPFN(m_rhi->getCurrentCommandBuffer(),
-                                                 mesh.mesh_index_count,
-                                                 current_instance_count,
-                                                 0,
-                                                 0,
-                                                 0);
+                        m_rhi->cmdDrawIndexedPFN(
+                            m_rhi->getCurrentCommandBuffer(), mesh.mesh_index_count, current_instance_count, 0, 0, 0);
                     }
                 }
             }
@@ -2603,26 +2656,23 @@ namespace Piccolo
 
     void MainCameraPass::drawSkybox()
     {
-        uint32_t perframe_dynamic_offset =
-            roundUp(m_global_render_resource->_storage_buffer
-                        ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
-                    m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
+        uint32_t perframe_dynamic_offset = roundUp(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
+            m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
 
         m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] =
             perframe_dynamic_offset + sizeof(MeshPerframeStorageBufferObject);
-        assert(m_global_render_resource->_storage_buffer
-                   ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
-               (m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
-                m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
+        assert(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
+            (m_global_render_resource->_storage_buffer._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
+             m_global_render_resource->_storage_buffer._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
 
         (*reinterpret_cast<MeshPerframeStorageBufferObject*>(
             reinterpret_cast<uintptr_t>(
                 m_global_render_resource->_storage_buffer._global_upload_ringbuffer_memory_pointer) +
             perframe_dynamic_offset)) = m_mesh_perframe_storage_buffer_object;
 
-        float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         m_rhi->pushEvent(m_rhi->getCurrentCommandBuffer(), "Skybox", color);
 
         m_rhi->cmdBindPipelinePFN(m_rhi->getCurrentCommandBuffer(),
@@ -2646,26 +2696,23 @@ namespace Piccolo
         if (!m_is_show_axis)
             return;
 
-        uint32_t perframe_dynamic_offset =
-            roundUp(m_global_render_resource->_storage_buffer
-                        ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
-                    m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
+        uint32_t perframe_dynamic_offset = roundUp(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()],
+            m_global_render_resource->_storage_buffer._min_storage_buffer_offset_alignment);
 
         m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] =
             perframe_dynamic_offset + sizeof(MeshPerframeStorageBufferObject);
-        assert(m_global_render_resource->_storage_buffer
-                   ._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
-               (m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
-                m_global_render_resource->_storage_buffer
-                    ._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
+        assert(
+            m_global_render_resource->_storage_buffer._global_upload_ringbuffers_end[m_rhi->getCurrentFrameIndex()] <=
+            (m_global_render_resource->_storage_buffer._global_upload_ringbuffers_begin[m_rhi->getCurrentFrameIndex()] +
+             m_global_render_resource->_storage_buffer._global_upload_ringbuffers_size[m_rhi->getCurrentFrameIndex()]));
 
         (*reinterpret_cast<MeshPerframeStorageBufferObject*>(
             reinterpret_cast<uintptr_t>(
                 m_global_render_resource->_storage_buffer._global_upload_ringbuffer_memory_pointer) +
             perframe_dynamic_offset)) = m_mesh_perframe_storage_buffer_object;
 
-        float color[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+        float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
         m_rhi->pushEvent(m_rhi->getCurrentCommandBuffer(), "Axis", color);
 
         m_rhi->cmdBindPipelinePFN(m_rhi->getCurrentCommandBuffer(),
@@ -2685,10 +2732,11 @@ namespace Piccolo
         m_axis_storage_buffer_object.selected_axis = m_selected_axis;
         m_axis_storage_buffer_object.model_matrix  = m_visiable_nodes.p_axis_node->model_matrix;
 
-        RHIBuffer*     vertex_buffers[3] = {m_visiable_nodes.p_axis_node->ref_mesh->mesh_vertex_position_buffer,
-                                     m_visiable_nodes.p_axis_node->ref_mesh->mesh_vertex_varying_enable_blending_buffer,
-                                     m_visiable_nodes.p_axis_node->ref_mesh->mesh_vertex_varying_buffer};
-        RHIDeviceSize offsets[3]        = {0, 0, 0};
+        RHIBuffer* vertex_buffers[3] = {
+            m_visiable_nodes.p_axis_node->ref_mesh->mesh_vertex_position_buffer,
+            m_visiable_nodes.p_axis_node->ref_mesh->mesh_vertex_varying_enable_blending_buffer,
+            m_visiable_nodes.p_axis_node->ref_mesh->mesh_vertex_varying_buffer};
+        RHIDeviceSize offsets[3] = {0, 0, 0};
         m_rhi->cmdBindVertexBuffersPFN(m_rhi->getCurrentCommandBuffer(),
                                        0,
                                        (sizeof(vertex_buffers) / sizeof(vertex_buffers[0])),
@@ -2702,12 +2750,8 @@ namespace Piccolo
             m_global_render_resource->_storage_buffer._axis_inefficient_storage_buffer_memory_pointer))) =
             m_axis_storage_buffer_object;
 
-        m_rhi->cmdDrawIndexedPFN(m_rhi->getCurrentCommandBuffer(),
-                                 m_visiable_nodes.p_axis_node->ref_mesh->mesh_index_count,
-                                 1,
-                                 0,
-                                 0,
-                                 0);
+        m_rhi->cmdDrawIndexedPFN(
+            m_rhi->getCurrentCommandBuffer(), m_visiable_nodes.p_axis_node->ref_mesh->mesh_index_count, 1, 0, 0, 0);
 
         m_rhi->popEvent(m_rhi->getCurrentCommandBuffer());
     }

@@ -29,6 +29,9 @@ namespace Piccolo
         _main_camera_pass_attachment_count              = 9,
     };
 
+    //Subpass is a unique design of vulkan api, which is a part of the vulkan render pass
+    //A vulkan render pass can contain multiple serial subpasses
+    //color grading is one of serial subpasses
     enum
     {
         _main_camera_subpass_basepass = 0,
@@ -36,6 +39,7 @@ namespace Piccolo
         _main_camera_subpass_forward_lighting,
         _main_camera_subpass_tone_mapping,
         _main_camera_subpass_color_grading,
+        _main_camera_subpass_vignette,
         _main_camera_subpass_fxaa,
         _main_camera_subpass_ui,
         _main_camera_subpass_combine_ui,
@@ -83,9 +87,13 @@ namespace Piccolo
             RHIPipeline*       pipeline;
         };
 
+        // record usefull global resource for this pass
         GlobalRenderResource*      m_global_render_resource {nullptr};
 
+        // recored input and output resource's layout message in shader
         std::vector<Descriptor>         m_descriptor_infos;
+
+        //recored information of execution pipline
         std::vector<RenderPipelineBase> m_render_pipelines;
         Framebuffer                     m_framebuffer;
 
@@ -98,6 +106,7 @@ namespace Piccolo
         virtual std::vector<RHIImageView*>           getFramebufferImageViews() const;
         virtual std::vector<RHIDescriptorSetLayout*> getDescriptorSetLayouts() const;
 
+        // recored visiable object in this pass. such as: some game objects
         static VisiableNodes m_visiable_nodes;
 
     private:
